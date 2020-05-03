@@ -1,0 +1,3 @@
+INSERT INTO fii (id, symbol, administrator, update_at) VALUES ('383a7eaa-8ced-41d6-9363-7e247d7e3f59', 'ABCP11', 'Rio Bravo', '2020-04-26 16:13:27');
+INSERT INTO fii (id, symbol, administrator, update_at) VALUES ('9f43a414-bdb7-4215-b341-f0a4b627f40f', 'ALMI11', 'BTG Pactual', '2020-04-26 16:13:27');
+INSERT INTO fii (id, symbol, administrator, update_at) VALUES ('ec526686-4c3c-4d06-8377-6b198f7cb8c0', 'ALZR11', 'BTG Pactual', '2020-04-26 16:13:27');
