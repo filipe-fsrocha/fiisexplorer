@@ -8,7 +8,9 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 /**
- * Informações resumicadas dos FII's (Fundos de Ivestimentos Imobiliários)
+ * Informações resumidas dos FII's (Fundos de Ivestimentos Imobiliários)
+ *
+ * @author Filipe Rocha
  */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)

@@ -14,6 +14,9 @@ import org.springframework.stereotype.Repository;
 import br.com.fsrocha.fiisexplorer.model.FiiEntity;
 import br.com.fsrocha.fiisexplorer.model.projection.FiiProjection;
 
+/**
+ * @author Filipe Rocha
+ */
 @Repository
 public interface FiiRepository extends JpaRepository<FiiEntity, UUID> {
 

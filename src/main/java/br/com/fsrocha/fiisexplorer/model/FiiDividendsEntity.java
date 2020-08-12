@@ -20,6 +20,9 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * @author Filipe Rocha
+ */
 @Data
 @Entity
 @Table(name = "dividends")
@@ -55,19 +58,4 @@ public class FiiDividendsEntity {
     @Column(name = "since_ipo")
     String sinceIpo;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FiiDividendsEntity that = (FiiDividendsEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(earnings, that.earnings) &&
-                Objects.equals(lastMonth, that.lastMonth) &&
-                Objects.equals(sinceIpo, that.sinceIpo);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, earnings, lastMonth, sinceIpo);
-    }
 }

@@ -4,6 +4,9 @@ import java.util.Objects;
 
 import br.com.fsrocha.fiisexplorer.dto.CompleteFiiDto;
 
+/**
+ * @author Filipe Rocha
+ */
 public class CompleteFiiOutput {
 
     /**

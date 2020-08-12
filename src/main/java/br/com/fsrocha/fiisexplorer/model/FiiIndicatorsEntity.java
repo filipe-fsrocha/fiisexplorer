@@ -21,6 +21,9 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * @author Filipe Rocha
+ */
 @Data
 @Entity
 @Table(name = "indicators")
@@ -65,19 +68,4 @@ public class FiiIndicatorsEntity {
     @Column(name = "percentage")
     Double percentage;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FiiIndicatorsEntity that = (FiiIndicatorsEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(pvp, that.pvp) &&
-                Objects.equals(price, that.price) &&
-                Objects.equals(percentage, that.percentage);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, pvp, price, percentage);
-    }
 }

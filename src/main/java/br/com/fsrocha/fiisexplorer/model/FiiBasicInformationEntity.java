@@ -20,6 +20,9 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * @author Filipe Rocha
+ */
 @Data
 @Entity
 @Table(name = "basic_information")
@@ -85,18 +88,4 @@ public class FiiBasicInformationEntity {
     @Column(name = "rate_consulting")
     private String rateConsulting;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FiiBasicInformationEntity that = (FiiBasicInformationEntity) o;
-        return id.equals(that.id) &&
-                companyName.equals(that.companyName) &&
-                cnpj.equals(that.cnpj);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, companyName, cnpj);
-    }
 }
