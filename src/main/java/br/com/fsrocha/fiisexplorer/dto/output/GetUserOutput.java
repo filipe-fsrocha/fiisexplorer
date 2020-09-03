@@ -3,15 +3,18 @@ package br.com.fsrocha.fiisexplorer.dto.output;
 import java.util.Objects;
 
 import br.com.fsrocha.fiisexplorer.dto.UserDto;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 
 /**
  * @author Filipe Rocha
  */
-public class UpdateUserOutput {
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class GetUserOutput {
 
     public UserDto user;
 
-    public UpdateUserOutput(UserDto user) {
+    public GetUserOutput(UserDto user) {
         this.user = user;
     }
 
@@ -19,7 +22,7 @@ public class UpdateUserOutput {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UpdateUserOutput output = (UpdateUserOutput) o;
+        GetUserOutput output = (GetUserOutput) o;
         return Objects.equals(user, output.user);
     }
 

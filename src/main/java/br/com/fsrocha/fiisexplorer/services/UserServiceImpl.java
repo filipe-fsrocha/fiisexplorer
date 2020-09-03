@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.fsrocha.fiisexplorer.model.UserEntity;
@@ -30,6 +31,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntity create(UserEntity userEntity) {
         log.info("Registering user with name {}", userEntity.getUsername());
+        validPassword(userEntity, userEntity.getPassword());
         UserEntity user = userRepository.save(userEntity);
         log.info("Registered user.");
         return user;
@@ -54,15 +56,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void existsUsernameOrEmail(String username, String email) {
         if (userRepository.existsByUsername(username) && Strings.isNotBlank(username)) {
-            throw new ServiceException(HttpStatus.BAD_REQUEST, String.format("Já existe um usuário cadastrado com o nome %s", username));
+            throw new ServiceException(HttpStatus.BAD_REQUEST, String.format("Este usuário %s não está disponível.", username));
         }
         if (userRepository.existsByEmail(email) && Strings.isNotBlank(email)) {
-            throw new ServiceException(HttpStatus.BAD_REQUEST, String.format("Já existe um usuário cadastrado com o e-mail %s", email));
+            throw new ServiceException(HttpStatus.BAD_REQUEST, String.format("Este e-mail %s não está disponível.", email));
         }
-    }
-
-    @Override
-    public void validPassword(String password) {
     }
 
     @Override
@@ -72,5 +70,33 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             throw new ServiceException(HttpStatus.BAD_REQUEST, e);
         }
+    }
+
+    @Override
+    public void changePassword(String username, String password) {
+        UserEntity user = userRepository.findByUsername(username);
+        if (user != null && checkPassword(password, user.getPassword())) {
+            validPassword(user, password);
+            user.setPassword(new BCryptPasswordEncoder().encode(password));
+            userRepository.save(user);
+        } else {
+            throw new ServiceException(HttpStatus.BAD_REQUEST, "Usuário e/ou senha invalidos.");
+        }
+    }
+
+    private String encoderPassword(String password) {
+        return new BCryptPasswordEncoder().encode(password);
+    }
+
+    private boolean checkPassword(String currentPassword, String oldPassword) {
+        return new BCryptPasswordEncoder().matches(currentPassword, oldPassword);
+    }
+
+    private void validPassword(UserEntity user, String password) {
+        final String PATTERN_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+        if (!password.matches(PATTERN_PASSWORD)) {
+            throw new ServiceException(HttpStatus.BAD_REQUEST, "A senha não atende os requisitos de complexidade!");
+        }
+        user.setPassword(encoderPassword(password));
     }
 }

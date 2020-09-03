@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fsrocha.fiisexplorer.configuration.FiiExplorerConstants;
 import br.com.fsrocha.fiisexplorer.dto.UserDto;
+import br.com.fsrocha.fiisexplorer.dto.output.GetUserOutput;
 import br.com.fsrocha.fiisexplorer.model.UserEntity;
 import br.com.fsrocha.fiisexplorer.services.UserService;
 import lombok.AccessLevel;
@@ -28,9 +29,9 @@ public class GetUserController {
     ModelMapper modelMapper;
 
     @GetMapping(value = FiiExplorerConstants.GET_USER)
-    public UserDto getUser(@PathVariable String id) {
+    public GetUserOutput getUser(@PathVariable String id) {
         UserEntity userEntity = userService.findById(userService.uuidFromString(id));
 
-        return modelMapper.map(userEntity, UserDto.class);
+        return new GetUserOutput(modelMapper.map(userEntity, UserDto.class));
     }
 }

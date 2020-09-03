@@ -31,7 +31,6 @@ public class RegisterUserController {
 
     @PostMapping(value = FiiExplorerConstants.REGISTER)
     public RegisterOutput registerUser(@Valid @RequestBody RegisterDto request) {
-        userService.validPassword(request.getPassword());
         userService.existsUsernameOrEmail(request.getUsername(), request.getEmail());
 
         UserEntity userEntity = modelMapper.map(request, UserEntity.class);

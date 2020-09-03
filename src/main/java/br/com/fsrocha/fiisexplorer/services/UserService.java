@@ -17,8 +17,8 @@ public interface UserService {
 
     void existsUsernameOrEmail(String username, String email);
 
-    void validPassword(String password);
-
     UUID uuidFromString(String uuid);
+
+    void changePassword(String username, String password);
 
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fsrocha.fiisexplorer.configuration.FiiExplorerConstants;
+import br.com.fsrocha.fiisexplorer.dto.UserDto;
 import br.com.fsrocha.fiisexplorer.dto.input.UpdateUserInput;
 import br.com.fsrocha.fiisexplorer.dto.output.UpdateUserOutput;
 import br.com.fsrocha.fiisexplorer.model.UserEntity;
@@ -32,12 +33,16 @@ public class UpdateUserController {
 
     @PutMapping(value = FiiExplorerConstants.UPDATE_USER)
     public UpdateUserOutput updateUser(@PathVariable String id, @Valid @RequestBody UpdateUserInput request) {
-        userService.existsUsernameOrEmail(null, request.email);
         UserEntity userEntity = userService.findById(userService.uuidFromString(id));
+
+        if (!userEntity.getEmail().equalsIgnoreCase(request.email)) {
+            userService.existsUsernameOrEmail(null, request.email);
+        }
+
         userEntity.setFullName(request.fullname);
         userEntity.setEmail(request.email);
         userEntity = userService.update(userEntity);
 
-        return new UpdateUserOutput(userEntity.getUsername());
+        return new UpdateUserOutput(modelMapper.map(userEntity, UserDto.class));
     }
 }
