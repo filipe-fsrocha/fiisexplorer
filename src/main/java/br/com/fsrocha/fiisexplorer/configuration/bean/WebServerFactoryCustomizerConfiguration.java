@@ -5,6 +5,9 @@ import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerF
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @author Filipe Rocha
+ */
 @Configuration
 public class WebServerFactoryCustomizerConfiguration {
 

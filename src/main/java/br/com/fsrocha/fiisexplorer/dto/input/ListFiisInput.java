@@ -4,6 +4,9 @@ import java.util.Objects;
 
 import br.com.fsrocha.fiisexplorer.utils.Pagination;
 
+/**
+ * @author Filipe Rocha
+ */
 public class ListFiisInput {
 
     /**

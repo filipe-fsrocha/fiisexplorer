@@ -2,6 +2,9 @@ package br.com.fsrocha.fiisexplorer.utils;
 
 import java.util.Objects;
 
+/**
+ * @author Filipe Rocha
+ */
 public class Pagination {
 
     /**

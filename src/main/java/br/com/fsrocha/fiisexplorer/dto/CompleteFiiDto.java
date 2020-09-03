@@ -11,6 +11,11 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Informaçõe scompletas dos FII's (Fundos de Investimentos Imobiliários)
+ *
+ * @author Filipe Rocha
+ */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CompleteFiiDto {

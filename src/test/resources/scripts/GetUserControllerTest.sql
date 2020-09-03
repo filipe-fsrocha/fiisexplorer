@@ -1,0 +1,1 @@
+INSERT INTO  users (id, fullname, username, email, password) VALUES ('b36200c1-bdb2-4cce-94ed-6d4a4a88514c', 'User Test', 'user', 'user@email.com', '$2a$10$NkQZYl.7KCTazSc7CMCe3.X7cc1co2aTk/hUiw1HLtJ2wl7aH5HQy');

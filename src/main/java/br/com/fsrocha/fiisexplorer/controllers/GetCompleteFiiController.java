@@ -14,6 +14,9 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * @author Filipe Rocha
+ */
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)

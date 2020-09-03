@@ -23,6 +23,9 @@ import lombok.Data;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * @author Filipe Rocha
+ */
 @Data
 @Entity
 @Table(name = "fii")
@@ -63,18 +66,4 @@ public class FiiEntity {
     @JsonManagedReference
     List<FiiAssetsEntity> assets = new ArrayList<>();
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        FiiEntity fiiEntity = (FiiEntity) o;
-        return id.equals(fiiEntity.id) &&
-                symbol.equals(fiiEntity.symbol);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id, symbol);
-    }
 }

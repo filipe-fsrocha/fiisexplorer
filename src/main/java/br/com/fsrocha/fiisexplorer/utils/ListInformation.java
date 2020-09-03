@@ -4,6 +4,9 @@ import java.util.Objects;
 
 import lombok.Data;
 
+/**
+ * @author Filipe Rocha
+ */
 @Data
 public class ListInformation {
 

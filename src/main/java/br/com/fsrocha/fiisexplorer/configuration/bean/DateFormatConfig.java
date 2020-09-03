@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Configuration;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
+/**
+ * @author Filipe Rocha
+ */
 @Configuration
 public class DateFormatConfig {
 

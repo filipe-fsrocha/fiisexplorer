@@ -1,19 +1,15 @@
 package br.com.fsrocha.fiisexplorer.model;
 
-import java.util.Objects;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
@@ -23,36 +19,35 @@ import lombok.experimental.FieldDefaults;
 /**
  * @author Filipe Rocha
  */
-@Data
 @Entity
-@Table(name = "assets_fiis")
+@Data
+@Table(name = "users")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class FiiAssetsEntity {
+public class UserEntity {
 
     @Id
-    @JsonIgnore
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     UUID id;
 
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "fii_id", referencedColumnName = "id")
-    FiiEntity fii;
+    @Column(name = "fullname")
+    String fullName;
 
-    @Column(name = "name")
-    String name;
+    @Column(name = "username")
+    String username;
 
-    @Column(name = "address")
-    String address;
+    @Column(name = "email")
+    String email;
 
-    @Column(name = "neighborhood")
-    String neighborhood;
+    @JsonIgnore
+    @Column(name = "password")
+    String password;
 
-    @Column(name = "city")
-    String city;
+    @JsonIgnore
+    @Column(name = "confirm_email")
+    Boolean confirmEmail = true;
 
-    @Column(name = "gross_leasable_area")
-    String grossLeasableArea;
+    @Column(name = "change_password")
+    Boolean changePassword = false;
 
 }
